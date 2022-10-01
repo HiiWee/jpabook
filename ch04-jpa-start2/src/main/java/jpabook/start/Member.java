@@ -17,6 +17,7 @@ public class Member {
     @Column(name = "ID")
     private String id;
 
+    // 회원 이름 필수, 10자 초과 안됨 조건 추가
     @Column(name = "NAME", nullable = false, length = 10) //추가 //**
 //    @Column(name = "NAME") //추가 //**
     private String username;

@@ -41,7 +41,7 @@ public class JpaMain {
         member.setUsername("지한");
         member.setAge(2);
 
-        //등록
+        //등록 -> member 영속 상태
         em.persist(member);
 
         //수정
