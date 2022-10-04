@@ -16,7 +16,9 @@
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.use_sql_comments" value="true" />
+            <!-- 키 생성 전략 적용 (ex: MySQL Auto increment)-->
             <property name="hibernate.id.new_generator_mappings" value="true" />
+            <!--DDL 정의해 스키마 자동생성-->
             <property name="hibernate.hbm2ddl.auto" value="create" />
             
             <!-- 기본 매핑 이름 -->
