@@ -32,7 +32,15 @@ public class Member {
 
     // 연관관계 설정
     public void setTeam(Team team) {
+        // 연관관계 편의 메서드
+        if (this.team != null) {
+            this.team.getMembers().remove(this);
+        }
         this.team = team;
+        // 무한루프 방지를 위해 !team.getMember().contains(this) 추가
+        if (team != null && !team.getMembers().contains(this)) {
+            team.addMember(this);
+        }
     }
 
     public String getId() {
@@ -55,4 +63,12 @@ public class Member {
         return team;
     }
 
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", team=" + team +
+                '}';
+    }
 }

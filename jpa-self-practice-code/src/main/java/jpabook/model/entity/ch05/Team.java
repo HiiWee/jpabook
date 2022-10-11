@@ -1,8 +1,8 @@
 package jpabook.model.entity.ch05;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 22/10/08
@@ -27,6 +27,20 @@ public class Team {
         this.name = name;
     }
 
+    // 양방향 연관관계를 위해 일대다 추가
+    // mappedBy: 양방향 매핑일때 반대쪽 매핑의 필드 이름을 값으로 준다
+    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<>();
+
+    public void addMember(Member member) {
+        this.members.add(member);
+
+        // 무한루프 방지를 위한 if문
+        if (member.getTeam() != this) {
+            member.setTeam(this);
+        }
+    }
+
 
     public String getId() {
         return id;
@@ -42,5 +56,13 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
     }
 }
